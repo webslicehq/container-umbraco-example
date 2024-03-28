@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rewrite>
+  <rules>
+    <rule name="Redirect to HTTPS" stopProcessing="true">
+      <match url=".*" />
+      <conditions>
+        <add input="{HTTPS}" pattern="^OFF$" />
+        <add input="{HTTP_HOST}" pattern="^localhost(:[0-9]+)?$" negate="true" />
+      </conditions>
+      <action type="Redirect" url="https://{HTTP_HOST}/{R:0}" />
+    </rule>
+  </rules>
+</rewrite>
